@@ -1,0 +1,20 @@
+ion-datetime-button::part(native) {
+    color: var(--ion-color-dark)!important;  
+}
+
+:host ::ng-deep ion-datetime-button {
+    width: 100%!important;
+}
+
+.day-box {
+    width: 100%;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: var(--ion-color-light);
+    color: #000;
+}
+
+.day-box.event {
+    background-color: var(--ion-color-danger);
+    color: #FFF;
+}

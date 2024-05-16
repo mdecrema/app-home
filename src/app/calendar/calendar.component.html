@@ -1,0 +1,118 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 1
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-title class="ion-text-size-20">{{ 'Calendar' | translate }}</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8" class="justify-content-start">
+            <ion-item lines="none" class="ion-text-start">
+              <!-- Years selector -->
+              <ion-button
+              style="width: 100%;"
+              id="year-popover"
+              slot="start"
+              color="danger"
+              >
+                {{ year }}
+              </ion-button>
+              <!-- <ion-datetime-button
+                    style="width: 100%!important"
+                    datetime="year"
+                    slot="start"
+                ></ion-datetime-button> -->
+                <ion-popover
+                    trigger="year-popover"
+                    [keepContentsMounted]="true"
+                    backdropDismiss="false"
+                    keyboardClose="false"
+                    expand="block"
+                >
+                    <ng-template>
+                        <ion-datetime
+                            id="year"
+                            presentation="year"
+                            showDefaultButtons="true"
+                            color="danger"
+                            [max]="year + 10"
+                            (ionChange)="onSwichYear($event)"
+                        ></ion-datetime>
+                    </ng-template>
+                </ion-popover>
+                <!-- Months selector -->
+                <ion-button
+                  style="width: 100%;"  
+                  id="month-popover"
+                  slot="start"
+                  color="danger"
+                >
+                  {{ convertMonthNumber(month) | translate }}
+                </ion-button>
+                <!-- <ion-datetime-button
+                    style="width: 100%!important"
+                    datetime="month"
+                    slot="start"
+                ></ion-datetime-button> -->
+                <ion-popover
+                    trigger="month-popover"
+                    [keepContentsMounted]="true"
+                    backdropDismiss="false"
+                    keyboardClose="false"
+                >
+                    <ng-template>
+                        <ion-datetime
+                            id="month"
+                            presentation="month"
+                            showDefaultButtons="true"
+                            color="danger"
+                            (ionChange)="onSwichMonth($event)"
+                        ></ion-datetime>
+                    </ng-template>
+                </ion-popover>
+            </ion-item>
+          </ion-col>
+          <!-- Add new event button -->
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-button (click)="onAddEvent()" color="danger" fill="clear" slot="end">
+                <!-- <ion-icon name="calendar-outline" size="large"></ion-icon> -->
+                <ion-icon name="add-circle-outline" size="large"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <!-- First row - week days name -->
+          <ion-col *ngFor="let day of daysOfWeek" style="border-bottom: 1px solid; text-align: center;">
+            {{ day  }}
+          </ion-col>
+        </ion-row>
+        <!-- Month days -->
+        <ion-row *ngFor="let week of weeks">
+          <ion-col *ngFor="let day of week" style="border-bottom: 1px solid; text-align: center;">
+            <div (click)="openDayDetails(day)" class="day-box"
+            [ngClass]="{'event': hasEvent(day)}"
+            >
+              {{ day || '' }}
+          </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,138 @@
+  <ion-header class="ion-no-border ion-padding-vertical">
+      <ion-toolbar>
+          <ion-col
+              size="12"
+              slot="start"
+              class="ion-text-center"
+          >
+              <ion-text class="ion-margin-start ion-text-uppercase ion-text-size-20 ion-text-weight-500">{{ title | translate }}</ion-text>
+          </ion-col>
+      </ion-toolbar>
+  </ion-header>
+  <ion-content
+      class="ion-padding"
+      style="position: relative;"
+  >
+      <div>
+        <!-- style="overflow-y: scroll; height: 100%;" -->
+          <ion-row>
+              <ion-col
+                  size="12"
+                  class="ion-margin-bottom"
+              >
+                  <ion-item class="ion-text-size-14">
+                      <ion-label
+                          slot="start"
+                          class="ion-text-uppercase"
+                      >
+                          {{ 'title' | translate }}
+                      </ion-label>
+                      <ion-input (change)="onChangeKeyValue(TITLE, $event)" [value]="task?.title">
+
+                      </ion-input>
+                  </ion-item>
+                  <ion-item class="ion-text-size-14">
+                    <ion-label
+                        slot="start"
+                        class="ion-text-uppercase"
+                    >
+                        {{ 'description' | translate }}
+                    </ion-label>
+                    <ion-input (change)="onChangeKeyValue(DESCRIPTION, $event)">
+
+                    </ion-input>
+                </ion-item>
+                <ion-item class="ion-text-size-14">
+                    <ion-label
+                        slot="start"
+                        class="ion-text-uppercase"
+                    >
+                        {{ 'start_date' | translate }}
+                    </ion-label>
+                    <ion-datetime-button
+                    datetime="startDate"
+                    slot="end"
+                ></ion-datetime-button>
+                <ion-popover
+                    [keepContentsMounted]="true"
+                    backdropDismiss="false"
+                    keyboardClose="false"
+                >
+                    <ng-template>
+                        <ion-datetime
+                            id="startDate"
+                            locale="it-IT"
+                            hourCycle="h23"
+                            showDefaultButtons="true"
+                            [value]="startDate"
+                            (ionChange)="onChangeKeyValue(STARTDATE, $event)"
+                            ></ion-datetime>
+                            <!-- doneText="{{ 'ok' | translate }}"
+                            cancelText="{{ 'cancel' | translate }}"
+                            style="min-width: 250px"
+                            [value]="timeStart"
+                            [disabled]="data.interval && data.interval.id == 1 ? true : false"
+                             -->
+                    </ng-template>
+                </ion-popover>
+                </ion-item>
+                <ion-item class="ion-text-size-14">
+                    <ion-label
+                        slot="start"
+                        class="ion-text-uppercase"
+                    >
+                        {{ 'end_date' | translate }}
+                    </ion-label>
+                    <ion-datetime-button
+                    datetime="endDate"
+                    slot="end"
+                ></ion-datetime-button>
+                <ion-popover
+                    [keepContentsMounted]="true"
+                    backdropDismiss="false"
+                    keyboardClose="false"
+                >
+                    <ng-template>
+                        <ion-datetime
+                            id="endDate"
+                            locale="it-IT"
+                            hourCycle="h23"
+                            showDefaultButtons="true"
+                            [value]="endDate"
+                            (ionChange)="onChangeKeyValue(SMALLDATE, $event)"
+                            ></ion-datetime>
+                            <!-- doneText="{{ 'ok' | translate }}"
+                            cancelText="{{ 'cancel' | translate }}"
+                            style="min-width: 250px"
+                            [value]="timeStart"
+                            [disabled]="data.interval && data.interval.id == 1 ? true : false"
+                             -->
+                    </ng-template>
+                </ion-popover>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+      </div>
+  </ion-content>
+  <ion-footer class="ion-padding ion-no-border ion-text-right">
+    <ion-row>
+        <ion-col size="6">
+            <ion-button
+            color="danger"
+            expand="block"
+            (click)="onDismiss()"
+            >
+            {{ 'cancel' | translate }}
+        </ion-button>
+        </ion-col>
+        <ion-col size="6">
+            <ion-button
+            color="danger"
+            expand="block"
+            (click)="saveTask()"
+        >
+            {{ 'continue' | translate }}
+        </ion-button>
+        </ion-col>
+    </ion-row>
+  </ion-footer>

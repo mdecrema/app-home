@@ -1,0 +1,16 @@
+<p>
+  tasks works!
+</p>
+<div *ngFor="let task of tasksList">
+  <div>
+    <h3>{{ task.title }}</h3>
+  </div>
+  <div>
+    <p>
+      {{ task.description }}
+    </p>
+  </div>
+  <div class="status-box" [ngStyle]="{'background-color': task?.completed ? 'var(--ion-color-success)' : 'var(--ion-color-danger)'}"> 
+    <span>{{ setStatusMessage(task?.completed) }}</span>
+  </div>
+</div>

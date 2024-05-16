@@ -35,3 +35,81 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+#container {
+    text-align: center;
+  
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+  
+    color: #8c8c8c;
+  
+    margin: 0;
+  }
+  
+  #container a {
+    text-decoration: none;
+  }
+
+  .custom-modal-css-alert {
+    --width: fit-content;
+    --width: 500px !important;
+    --height: 272px;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    ion-button {
+        width: 130px !important
+    }
+}
+
+.custom-modal-css {
+    --width: fit-content;
+    --min-width: 900px !important;
+    --height: 80%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    ion-footer>ion-button {
+        width: 130px !important
+    }
+}
+
+.custom-modal-css::part(backdrop) {
+    pointer-events: auto !important;
+    opacity: 1;
+}
+
+.ion-text-size-12 {
+  font-size: 12px!important;
+}
+
+.ion-text-size-14 {
+  font-size: 14px!important;
+}
+
+.ion-text-size-16 {
+  font-size: 16px!important;
+}
+
+.ion-text-size-18 {
+  font-size: 18px!important;
+}
+
+.ion-text-size-20 {
+  font-size: 20px!important;
+}
