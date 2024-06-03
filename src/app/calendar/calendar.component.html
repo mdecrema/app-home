@@ -38,7 +38,6 @@
                 ></ion-datetime-button> -->
                 <ion-popover
                     trigger="year-popover"
-                    [keepContentsMounted]="true"
                     backdropDismiss="false"
                     keyboardClose="false"
                     expand="block"
@@ -68,22 +67,22 @@
                     datetime="month"
                     slot="start"
                 ></ion-datetime-button> -->
-                <ion-popover
+                <!-- <ion-popover
                     trigger="month-popover"
-                    [keepContentsMounted]="true"
                     backdropDismiss="false"
                     keyboardClose="false"
                 >
-                    <ng-template>
+                    <ng-template> -->
                         <ion-datetime
+                        trigger="month-popover"
                             id="month"
                             presentation="month"
                             showDefaultButtons="true"
                             color="danger"
                             (ionChange)="onSwichMonth($event)"
                         ></ion-datetime>
-                    </ng-template>
-                </ion-popover>
+                    <!-- </ng-template>
+                </ion-popover> -->
             </ion-item>
           </ion-col>
           <!-- Add new event button -->

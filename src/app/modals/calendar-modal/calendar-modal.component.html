@@ -15,6 +15,11 @@
   >
       <div>
         <!-- style="overflow-y: scroll; height: 100%;" -->
+        <form
+            id="taskForm"
+            [formGroup]="taskForm"
+            (ngSubmit)="onSubmit()"
+        >
           <ion-row>
               <ion-col
                   size="12"
@@ -27,8 +32,9 @@
                       >
                           {{ 'title' | translate }}
                       </ion-label>
-                      <ion-input (change)="onChangeKeyValue(TITLE, $event)" [value]="task?.title">
-
+                      <ion-input 
+                        (change)="onChangeKeyValue(TITLE, $event)" 
+                        [value]="task?.title">
                       </ion-input>
                   </ion-item>
                   <ion-item class="ion-text-size-14">
@@ -38,8 +44,11 @@
                     >
                         {{ 'description' | translate }}
                     </ion-label>
-                    <ion-input (change)="onChangeKeyValue(DESCRIPTION, $event)">
-
+                    <ion-input 
+                        (change)="onChangeKeyValue(DESCRIPTION, $event)"
+                        [placeholder]="setTextTranslation('enter_event_description')"
+                        [value]="task?.description"
+                    >
                     </ion-input>
                 </ion-item>
                 <ion-item class="ion-text-size-14">
@@ -50,9 +59,10 @@
                         {{ 'start_date' | translate }}
                     </ion-label>
                     <ion-datetime-button
-                    datetime="startDate"
-                    slot="end"
-                ></ion-datetime-button>
+                        datetime="startDate"
+                        slot="end"
+                    >
+                    </ion-datetime-button>
                 <ion-popover
                     [keepContentsMounted]="true"
                     backdropDismiss="false"
@@ -94,12 +104,12 @@
                 >
                     <ng-template>
                         <ion-datetime
-                            id="endDate"
-                            locale="it-IT"
-                            hourCycle="h23"
-                            showDefaultButtons="true"
-                            [value]="endDate"
-                            (ionChange)="onChangeKeyValue(SMALLDATE, $event)"
+                                id="endDate"
+                                locale="it-IT"
+                                hourCycle="h23"
+                                showDefaultButtons="true"
+                                [value]="endDate"
+                                (ionChange)="onChangeKeyValue(SMALLDATE, $event)"
                             ></ion-datetime>
                             <!-- doneText="{{ 'ok' | translate }}"
                             cancelText="{{ 'cancel' | translate }}"
@@ -112,24 +122,26 @@
                 </ion-item>
               </ion-col>
           </ion-row>
+        </form>
       </div>
   </ion-content>
   <ion-footer class="ion-padding ion-no-border ion-text-right">
     <ion-row>
         <ion-col size="6">
             <ion-button
-            color="danger"
-            expand="block"
-            (click)="onDismiss()"
+                color="danger"
+                expand="block"
+                (click)="onDismiss()"
             >
             {{ 'cancel' | translate }}
         </ion-button>
         </ion-col>
         <ion-col size="6">
             <ion-button
-            color="danger"
-            expand="block"
-            (click)="saveTask()"
+                color="danger"
+                expand="block"
+                type="submit"
+                form="taskForm"
         >
             {{ 'continue' | translate }}
         </ion-button>

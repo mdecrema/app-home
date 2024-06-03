@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CalendarModalRoutingModule } from './calendar-modal-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { CalendarModalComponent } from './calendar-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { CalendarModalComponent } from './calendar-modal.component';
   imports: [
     CommonModule,
     CalendarModalRoutingModule,
-    IonicModule
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CalendarModalModule { }

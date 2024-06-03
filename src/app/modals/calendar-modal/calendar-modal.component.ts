@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TASK_KEY, Task } from './../../../models/task.model';
+import { TranslateService } from '@ngx-translate/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-calendar-modal',
@@ -11,6 +13,8 @@ export class CalendarModalComponent  implements OnInit {
   public task: Task
   public startDate: string;
   public endDate: string;
+  public taskForm!: FormGroup;
+  public fields: any;
 
   @Input()
   title: any;
@@ -37,28 +41,32 @@ export class CalendarModalComponent  implements OnInit {
   COMPLETED: TASK_KEY = TASK_KEY.COMPLETED
 
   constructor(
+    private translateService: TranslateService,
     public modalCtrl: ModalController
   ) {
     this.startDate = ''
     this.endDate = ''
-
+    this.fields = new Array<any>()
     this.task = {} as Task
   }
 
   ngOnInit() {
-    this.startDate = this.getStartDate()
-    this.endDate = this.getStartDate()
+    this.startDate = this.setInitialDate()
+    this.endDate = this.setInitialDate(true)
 
     this.task = {
-      title: 'New event',
-      description: '',
+      title: this.translateService.instant('new_event'),
+      description: '-',
       completed: false,
       startDate: new Date(this.startDate).getMilliseconds(),
       smallDate: new Date(this.startDate).getMilliseconds(),
       fromTime: '00:00',
-      toTime: '00:00',
+      toTime: '23:59',
       color: ''
     }
+
+    const form = this.buildForm();
+    console.log(form)
   }
 
   public onChangeTitle(ev: any) {
@@ -92,7 +100,7 @@ export class CalendarModalComponent  implements OnInit {
 
         this.task[key] = new Date(endDate).getTime()
         this.task.toTime = toTime
-
+      
         break;
     
       default:
@@ -100,18 +108,46 @@ export class CalendarModalComponent  implements OnInit {
     }
   }
 
-  public getStartDate() {
-    const day = this.day < 10 ? `0${this.day}` : `${this.day}`
-    const month = this.month < 10 ? `0${this.month}` : `${this.month}`
+  public setInitialDate(isEnd: boolean = false): string {
+    const time = !isEnd ? 'T00:00' : 'T23:59'
+    const day = this.day.length < 2 ? `0${this.day}` : `${this.day}`
+    const month = this.month.length < 2 ? `0${this.month}` : `${this.month}`
 
-    return `${this.year}-${month}-${day}T00:00`
+    return `${this.year}-${month}-${day}${time}`
+  }
+
+  public buildForm() {
+    const formGroupFields = this.getFormControlsFields();
+    this.taskForm = new FormGroup(formGroupFields);
+  }
+
+  public getFormControlsFields() {
+
+    const formGroupFields: any = {};
+
+    const task: any = this.task;
+
+    for (const field of Object.keys(task)) {
+
+        const fieldProps: any = field;
+
+        formGroupFields[fieldProps] = new FormControl(fieldProps, [Validators.required]);
+
+        this.fields.push({ ...fieldProps, fieldName: fieldProps });
+    }
+
+    return formGroupFields;
+  }
+
+  public setTextTranslation(key: string) {
+    return this.translateService.instant('enter_event_description')
   }
 
   public onDismiss() {
     this.modalCtrl.dismiss()
   }
 
-  public saveTask() {
+  public onSubmit() {
     this.modalCtrl.dismiss(this.task)
   }
 

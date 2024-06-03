@@ -8,12 +8,20 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'lights',
+        loadChildren: () => import('../lights/lights.module').then(m => m.LightsModule)
+      },
+      {
+        path: 'cameras',
+        loadChildren: () => import('../cameras/cameras.module').then(m => m.CamerasModule)
+      },
+      {
         path: 'tab1',
-        loadChildren: () => import('../calendar/calendar.module').then(m => m.CalendarModule)
+        loadChildren: () => import('../devices/devices.module').then(m => m.DevicesModule)
       },
       {
         path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        loadChildren: () => import('../calendar/calendar.module').then(m => m.CalendarModule)
       },
       {
         path: 'tab3',

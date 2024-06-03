@@ -86,7 +86,7 @@ export class CalendarComponent  implements OnInit {
 
   nextYear(step: number = 1): void {
     this.year += step;
-    this.generateCalendar(this.year, this.month);
+    this.generateCalendar(this.year, this.month);      
   }
 
   public convertMonthNumber(month: number) {
@@ -99,9 +99,9 @@ export class CalendarComponent  implements OnInit {
     const data = {
             title: 'new_event',
             subTitle: 'create_new_event',
-            month: this.month,
+            month: this.month.toString(),
             year: this.year,
-            day: day,
+            day: day.toString(),
             buttons: [
                 {
                     label: 'confirm',

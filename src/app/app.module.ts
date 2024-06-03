@@ -16,12 +16,20 @@ import { CalendarModalComponent } from './modals/calendar-modal/calendar-modal.c
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DevicesComponent } from './devices/devices.component';
+import { LightsComponent } from './lights/lights.component';
+import { CamerasComponent } from './cameras/cameras.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     TasksComponent,
     CalendarComponent,
-    CalendarModalComponent
+    CalendarModalComponent,
+    DevicesComponent,
+    LightsComponent,
+    CamerasComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     AppRoutingModule,
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
