@@ -3,6 +3,7 @@ import { DEVICE, DEVICE_GROUP } from 'src/models/device.model';
 import { forIn } from 'lodash';
 import { ICON } from 'src/models/icon.model';
 import { WsService } from 'src/services/ws.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-devices',
@@ -25,7 +26,7 @@ export class DevicesComponent  implements OnInit {
   ngOnInit() {
     this.setDeviceTabs()
 
-    this.wsService.connect('wss://whale-app-3wbzf.ondigitalocean.app');
+    this.wsService.connect('ws://192.168.1.78:3000');
     this.wsService.getMessages().subscribe((message: any) => {
       console.log(message)
       

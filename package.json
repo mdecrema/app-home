@@ -9,8 +9,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "build:digitalocean": "yarn install --production=false && yarn run build && rm -rf node_modules && yarn install --production --frozen-lockfile"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +34,7 @@
     "date-fns": "^3.6.0",
     "ionicons": "^7.0.0",
     "lodash": "^4.17.21",
+    "moment": "^2.30.1",
     "rxjs": "~7.8.0",
     "socket-io": "^1.0.0",
     "socket.io": "^4.7.5",
