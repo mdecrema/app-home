@@ -26,7 +26,8 @@ export class DevicesComponent  implements OnInit {
   ngOnInit() {
     this.setDeviceTabs()
 
-    this.wsService.connect('ws://192.168.1.78:3000');
+    // this.wsService.connect('ws://192.168.1.78:3000');
+    this.wsService.connect('ws://79.30.213.25:8221');
     this.wsService.getMessages().subscribe((message: any) => {
       console.log(message)
       
